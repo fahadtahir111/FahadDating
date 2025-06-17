@@ -1,51 +1,93 @@
 'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { FaCheck } from 'react-icons/fa';
 
 const LoveStories = () => {
   const stories = [
     {
       id: 1,
-      image: '/assets/standard.png',
+      image: '/assets/couple1.png',
       names: 'Sarah & Michael',
       description: 'Met in 2022, now engaged!'
     },
     {
       id: 2,
-      image: '/assets/standard.png',
+      image: '/assets/couple2.png',
       names: 'James & Emma',
       description: 'Connected across continents'
     },
     {
       id: 3,
-      image: '/assets/standard.png',
+      image: '/assets/couple3.png',
       names: 'David & Priya',
       description: 'Our algorithm\'s perfect match'
     }
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <motion.div 
+          className="grid md:grid-cols-2 gap-12 items-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <div>
-            <h1 className="text-5xl lg:text-6xl font-bold mb-4 gradient-text">Real Love Stories</h1>
-            <p className="text-gray-400 mb-6">
+            <motion.h1 
+              className="text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600"
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              Real Love Stories
+            </motion.h1>
+            <motion.p 
+              className="text-gray-600 mb-8 text-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               Discover how real people found love on LoveConnect Pro. These journeys showcase the magic of smart matchmaking and real connections.
-            </p>
-            <ul className="list-disc list-inside text-gray-400">
-              <li>Millions of success stories</li>
-              <li>Couples from every continent</li>
-              <li>Trusted by genuine singles worldwide</li>
-            </ul>
+            </motion.p>
+            <motion.ul 
+              className="space-y-3 text-gray-600"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.4, staggerChildren: 0.1 }}
+              viewport={{ once: true }}
+            >
+              {['Millions of success stories', 'Couples from every continent', 'Trusted by genuine singles worldwide'].map((item, index) => (
+                <motion.li 
+                  key={index}
+                  className="flex items-start"
+                  initial={{ x: -20 }}
+                  whileInView={{ x: 0 }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                >
+                  <FaCheck className="text-blue-500 mt-1 mr-3 flex-shrink-0" />
+                  <span>{item}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
           </div>
-          <div className="w-full overflow-hidden rounded-xl shadow-lg">
+
+          <motion.div 
+            className="w-full overflow-hidden rounded-xl shadow-xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <Swiper
               modules={[Autoplay, Pagination, Navigation]}
               spaceBetween={0}
@@ -63,29 +105,41 @@ const LoveStories = () => {
             >
               {stories.map((story) => (
                 <SwiperSlide key={story.id}>
-                  <div className="relative">
+                  <div className="relative group">
                     <img 
                       src={story.image} 
                       alt={`Love Story ${story.id}`} 
-                      className="w-full h-64 md:h-96 object-cover" 
+                      className="w-full h-64 md:h-96 object-cover transition-transform duration-700 group-hover:scale-105" 
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                      <h3 className="text-white text-xl font-semibold">{story.names}</h3>
-                      <p className="text-gray-300">{story.description}</p>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
+                      <motion.h3 
+                        className="text-white text-2xl font-semibold mb-1"
+                        initial={{ y: 20 }}
+                        whileInView={{ y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {story.names}
+                      </motion.h3>
+                      <motion.p 
+                        className="text-gray-300"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
+                        {story.description}
+                      </motion.p>
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      <style jsx>{`
-  
-        
-        :global(.swiper-button-next),
-        :global(.swiper-button-prev) {
+      <style jsx global>{`
+        .swiper-button-next,
+        .swiper-button-prev {
           color: white;
           background: rgba(0,0,0,0.3);
           width: 40px;
@@ -94,21 +148,33 @@ const LoveStories = () => {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: all 0.3s ease;
         }
         
-        :global(.swiper-button-next:after),
-        :global(.swiper-button-prev:after) {
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+          background: rgba(0,0,0,0.5);
+        }
+        
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
           font-size: 20px;
+          font-weight: bold;
         }
         
-        :global(.swiper-pagination-bullet) {
+        .swiper-pagination-bullet {
           background: white;
           opacity: 0.5;
+          width: 10px;
+          height: 10px;
+          transition: all 0.3s ease;
         }
         
-        :global(.swiper-pagination-bullet-active) {
-          background: #ff6b6b;
+        .swiper-pagination-bullet-active {
+          background: #4f46e5;
           opacity: 1;
+          width: 20px;
+          border-radius: 5px;
         }
       `}</style>
     </section>

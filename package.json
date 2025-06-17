@@ -11,10 +11,20 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@prisma/client": "^6.9.0",
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
+    "@supabase/supabase-js": "^2.50.0",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.2",
+    "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
     "next": "15.3.3",
+    "next-auth": "^4.24.11",
+    "prisma": "^6.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-intersection-observer": "^9.16.0",
     "swiper": "^11.2.8"
   },
   "devDependencies": {
