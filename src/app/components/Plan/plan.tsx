@@ -28,10 +28,10 @@ const PricingCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay }}
-      className={`relative p-8 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border ${
-        highlight 
-          ? 'border-2 border-yellow-400 dark:border-yellow-500' 
-          : 'border-gray-200 dark:border-gray-700'
+      className={`relative p-8 rounded-xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
+        highlight
+          ? 'border-2 border-yellow-400 dark:border-yellow-500'
+          : 'border border-gray-200 dark:border-gray-700'
       }`}
     >
       {highlight && (
