@@ -4,7 +4,7 @@ import Slider from './components/Slider/slider'
 import PremiumFeatures from './components/Premium/premium'
 import { Footer, PricingSection } from './components/Plan/plan'
 
-const page = () => {
+const Page = () => {
   return (
     <main>
       <Main></Main>
@@ -20,4 +20,5 @@ const page = () => {
     
   )
 }
-export default page
+
+export default Page
